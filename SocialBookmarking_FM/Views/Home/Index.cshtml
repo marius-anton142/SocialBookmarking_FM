@@ -1,52 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Bookmarking</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+@*@model List<SocialBookmarking_FM.Models.Bookmark>*@
 
-</head>
-<body>
-    <nav class="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">Social Bookmarking</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <div class="mx-auto">
-                    <form class="d-flex">
-                        <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" style="    min-width: 270%; background-color: #efefef;">
-                    </form>
-                </div>
-                <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">
-                            <i class="far fa-comment"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">
-                            <i class="far fa-flag"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="d-flex justify-content-around">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+   
+    @*<div class="d-flex justify-content-around">
         <div>
             <h6><i class="fas fa-edit text-primary pr-1"></i>New Bookmark</h6>
         </div>
-    </div>
+    </div>*@
     <div class="container jsjhr">
         <div class="row skfjh">
             <div class="col-md-2 sfjhe">
-                <div class=" sjfsj">
+                @*<div class=" sjfsj">
                     <h5 class="text-center pt-3">
                         USER
                     </h5>
@@ -58,20 +27,22 @@
                             Profile
                         </a>
                     </div>
-                </div>
+                </div>*@
             </div>
             <div class="col-md-6">
-                <div class="jfheuf"><textarea name="" id="" cols="3" rows="3" class="form-control" placeholder="Un bookmark nou..."></textarea>
-                </div>
+               @* <div class="jfheuf"><textarea name="" id="" cols="3" rows="3" class="form-control" placeholder="Un bookmark nou..."></textarea>
+                </div>*@
+                @foreach (var item in ViewBag.bkm) {
+                
                 <div class="box1">
                     <div class="d-flex skfjkk">
                         <div class="pl-2 pt-1">
-                            <h6>BOOKMARK1_USER</h6>
+                                <h6>@item.u.UserName</h6>
                         </div>
                     </div>
                     <hr>
                     <p class="text-muted">
-                        Cel mai apreciat bookmark... Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis, odio necessitatibus accusantium facilis obcaecati? Sequi, cupiditate? Temporibus, tenetur reprehenderit?
+                            @item.b.Title
                     </p>
                     <hr>
                     <div>
@@ -81,70 +52,16 @@
                     <div class="d-flex justify-content-around">
                         <div>
                             <i class="fa fa-heart"></i>
-                            Like 55
+                                Like @item.b.rating
                         </div>
-                        <div>
+                        @*<div>
                             <i class="fa fa-comment"></i>
                             Comments 23
-                        </div>
+                        </div>*@
                     </div>
                 </div>
-                <div class="box1">
-                    <div class="d-flex skfjkk">
-                        <div class="lkt40">
-                        </div>
-                        <div class="pl-2 pt-1">
-                            <h6>BOOKMARK2_USER</h6>
-                        </div>
-                    </div>
-                    <hr>
-                    <p class="text-muted">
-                        Al doilea bookmark de pe lista. Ceva interesant etc etc etc. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis, odio necessitatibus accusantium facilis obcaecati? Sequi, cupiditate? Temporibus, tenetur reprehenderit?
-                    </p>
-                    <hr>
-                    <div>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="d-flex justify-content-around">
-                        <div>
-                            <i class="fa fa-heart"></i>
-                            Like 55
-                        </div>
-                        <div>
-                            <i class="fa fa-comment"></i>
-                            Comments 23
-                        </div>
-                    </div>
-                </div>
-                <div class="box1">
-                    <div class="d-flex skfjkk">
-                        <div class="lkt40">
-                        </div>
-                        <div class="pl-2 pt-1">
-                            <h6>BOOKMARK3_USER</h6>
-                        </div>
-                    </div>
-                    <hr>
-                    <p class="text-muted">
-                        Al treilea bookmark.
-                    </p>
-                    <hr>
-                    <div>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="d-flex justify-content-around">
-                        <div>
-                            <i class="fa fa-heart"></i>
-                            Like 55
-                        </div>
-                        <div>
-                            <i class="fa fa-comment"></i>
-                            Comments 23
-                        </div>
-                    </div>
-                </div>
+                }
+               
                 <div class="left_box mt-3">
                     <span class="font-weight-medium">
                         INFORMATII DESPRE SITE
@@ -158,5 +75,4 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+

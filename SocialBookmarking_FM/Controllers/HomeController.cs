@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SocialBookmarking_FM.Data;
 using SocialBookmarking_FM.Models;
 using System.Diagnostics;
 
@@ -8,13 +9,23 @@ namespace SocialBookmarking_FM.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            db = context;
         }
+
+        private readonly ApplicationDbContext db;
+        
 
         public IActionResult Index()
         {
+            var bkm = (from x in db.Bookmarks 
+                       join y in db.Users
+                       on x.UserId equals y.Id
+                       //from entry in ALLCOLUMNS
+                       select new {b = x, u = y}).ToList();
+            ViewBag.bkm = bkm;
             return View();
         }
 

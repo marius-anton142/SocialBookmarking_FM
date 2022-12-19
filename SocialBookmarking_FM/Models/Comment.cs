@@ -11,6 +11,7 @@ namespace SocialBookmarking_FM.Models
         public DateTime Date { get; set; }
         public int BookmarkId { get; set; }
         public virtual Bookmark Bookmark { get; set; }
+        public string? UserId { get; set; }
     }
 
 }

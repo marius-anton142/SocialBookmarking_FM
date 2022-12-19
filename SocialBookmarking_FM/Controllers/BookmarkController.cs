@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SocialBookmarking_FM.Data;
 using SocialBookmarking_FM.Models;
+using System.Security.Claims;
 
 namespace SocialBookmarking_FM.Controllers
 {
@@ -17,9 +19,9 @@ namespace SocialBookmarking_FM.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         public IActionResult Create()
         {
-            // Add categories ids to viewbag
             var categs = db.Categories.ToList();
             ViewBag.CategoryId = categs;
 
@@ -27,10 +29,12 @@ namespace SocialBookmarking_FM.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User,Admin")]
         public IActionResult Create(Bookmark b)
         {
             b.Date = DateTime.Now;
             b.rating = 0;
+            b.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             db.Bookmarks.Add(b);
             db.SaveChanges();
             return RedirectToAction("Index");

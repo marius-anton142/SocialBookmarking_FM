@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SocialBookmarking_FM.Data;
 using SocialBookmarking_FM.Models;
+using System.Data;
 
 namespace SocialBookmarking_FM.Controllers
 {
@@ -11,12 +13,14 @@ namespace SocialBookmarking_FM.Controllers
         {
             db = context;
         }
+
         public IActionResult Index()
         {
             return View(db.Categories.ToList());
         }
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         public IActionResult Create()
         {
             
@@ -24,6 +28,7 @@ namespace SocialBookmarking_FM.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User,Admin")]
         public IActionResult Create(Category c)
         {
             db.Categories.Add(c);
