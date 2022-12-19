@@ -49,8 +49,33 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
+    name: "addbookmark",
+    pattern: "Bookmark/Create",
+    defaults: new {controller = "Bookmark", action="Create"}
+    );
+
+app.MapControllerRoute(
+    name: "addbookmark",
+    pattern: "Bookmark/Index",
+    defaults: new { controller = "Bookmark", action = "Index" }
+    );
+
+app.MapControllerRoute(
+    name: "addcategory",
+    pattern: "Category/Create",
+    defaults: new { controller = "Category", action = "Create" }
+    );
+
+app.MapControllerRoute(
+    name: "addcategory",
+    pattern: "Category/Index",
+    defaults: new { controller = "Category", action = "Index" }
+    );
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
 
 app.Run();

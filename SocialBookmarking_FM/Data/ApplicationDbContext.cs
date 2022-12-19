@@ -11,5 +11,11 @@ namespace SocialBookmarking_FM.Data
         {
 
         }
+
+        public DbSet<Bookmark> Bookmarks { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
     }
 }

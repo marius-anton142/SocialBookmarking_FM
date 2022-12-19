@@ -47,7 +47,6 @@ namespace SocialBookmarking_FM.Models
                    PasswordHash = hasher.HashPassword(null, "User1!")
                }
                );
-                // ASOCIEREA USER-ROLE
                 context.UserRoles.AddRange(
                 new IdentityUserRole<string>
                 {
