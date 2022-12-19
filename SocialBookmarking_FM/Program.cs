@@ -73,6 +73,18 @@ app.MapControllerRoute(
     );
 
 app.MapControllerRoute(
+    name: "editcategory",
+    pattern: "Category/Edit/{id}",
+    defaults: new { controller = "Category", action = "Edit" }
+    );
+
+app.MapControllerRoute(
+    name: "showcategory",
+    pattern: "Category/Details/{id}",
+    defaults: new { controller = "Category", action = "Show" }
+    );
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 

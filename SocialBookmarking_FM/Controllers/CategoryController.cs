@@ -35,5 +35,40 @@ namespace SocialBookmarking_FM.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(int id)
+        {
+            var categ = db.Categories.Find(id);
+            return View(categ);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(Category c)
+        {
+            db.Categories.Update(c);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(int id)
+        {
+            var categ = db.Categories.Find(id);
+            db.Categories.Remove(categ);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Show(int id)
+        {
+            var categ = db.Categories.Find(id);
+            return View(categ);
+        }
     }
 }
