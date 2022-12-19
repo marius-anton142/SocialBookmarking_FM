@@ -33,6 +33,7 @@ namespace SocialBookmarking_FM.Data.Migrations
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     rating = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
+                    
                 },
                 constraints: table =>
                 {
