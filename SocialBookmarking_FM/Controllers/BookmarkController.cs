@@ -63,7 +63,10 @@ namespace SocialBookmarking_FM.Controllers
                        select new { b = x, u = y, c = z }).ToList()[0];
             ViewBag.bkm = bkm;
 
-            ViewBag.currentUser = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (User.Identity.IsAuthenticated)
+                ViewBag.currentUser = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            else
+                ViewBag.currentUser = "";
 
             var comments = (from x in db.Bookmarks
                             where x.Id == id
