@@ -1,43 +1,103 @@
-﻿@model IEnumerable<SocialBookmarking_FM.Models.Category>
+@model IEnumerable<SocialBookmarking_FM.Models.Category>
 
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+</head>
+<body>
+    <h1>Categories</h1>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <hr>
+    <table>
+        <tr id="header">
             <th>
                 @Html.DisplayNameFor(model => model.CategoryName)
             </th>
-            <th></th>
+            <th>Moderate</th>
         </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryName)
-            </td>
-            <td>
-                @if (User.IsInRole("Admin")) {
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    
-                }
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
-                
-                @if (User.IsInRole("Admin")) {
-                        <form class="form-inline" method="post" action="/Category/Delete/@item.Id">
-                        <button type="submit" class="nav-link btn btn-link text-dark">Delete</button>
-                    </form>
-                }
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+<style>
+    body {
+        padding: 0px;
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+    }
+
+    table {
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 0);
+        border-collapse: collapse;
+        width: 800px;
+        height: 200px;
+        border: 1px solid #bdc3c7;
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    tr {
+        transition: all .2s ease-in;
+        cursor: pointer;
+    }
+
+    th,
+    td {
+        padding: 12px;
+        max-width: 200px;
+        text-align: center;
+        vertical-align: text-top;
+        word-wrap: break-word;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #header {
+        background-color: #16a085;
+        color: #fff;
+    }
+
+    h1 {
+        font-weight: 600;
+        text-align: center;
+        background-color: #16a085;
+        color: #fff;
+        padding: 10px 0px;
+    }
+
+    p {
+        font-weight: 600;
+        text-align: center;
+        background-color: #16A040;
+        color: #fff;
+        padding: 10px 0px;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+        transform: scale(1.02);
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    a {
+        color: #000;
+    }
+</style>
