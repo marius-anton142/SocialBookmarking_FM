@@ -1,0 +1,124 @@
+﻿@*@model SocialBookmarking_FM.Models.Bookmark*@
+
+@{
+    ViewData["Title"] = "Show";
+}
+
+<h1>Show</h1>
+
+<div>
+    <h4>Bookmark</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Title
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.bkm.b.Title
+        </dd>
+        <dt class = "col-sm-2">
+            Content
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.bkm.b.Content
+        </dd>
+        <dt class = "col-sm-2">
+            Date
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.bkm.b.Date
+        </dd>
+        <dt class = "col-sm-2">
+            Rating
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.bkm.b.rating
+        </dd>
+        <dt class = "col-sm-2">
+            Category
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.bkm.c.CategoryName
+        </dd>
+        <dt class = "col-sm-2">
+            User
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.bkm.u.UserName
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (User.IsInRole("Admin") || ViewBag.bkm.u.Id == ViewBag.currentUser)
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+    }
+    <a asp-action="Index">Back to List</a>
+</div>
+<hr />
+
+@* Show comments *@
+<div>
+    <h4>Comments</h4>
+    <hr />
+    <div>
+        @foreach (var item in ViewBag.comments)
+        {
+            <dl class="row">
+                <dt class="col-sm-2">
+                    User
+                </dt>
+                <dd class="col-sm-10">
+                    @item.u.UserName
+                </dd>
+                <dt class="col-sm-2">
+                    Content
+                </dt>
+                <dd class="col-sm-10">
+                    @item.c.Content
+                </dd>
+                <dt class="col-sm-2">
+                    Date
+                </dt>
+                <dd class="col-sm-10">
+                    @item.c.Date
+                </dd>
+            </dl>
+            @if (User.IsInRole("Admin") || item.u.Id == ViewBag.currentUser)
+            {
+                <a href="/Comment/Edit/@item.c.CommentId">Edit</a>
+            }
+            @if (User.IsInRole("Admin") || item.u.Id == ViewBag.currentUser)
+            {
+               <form class="form-inline" method="post" action="/Comment/Delete/@item.c.CommentId">
+                            <button type="submit" class="nav-link btn btn-link text-dark">Delete</button>
+                        </form>
+            }
+            <hr />
+        }
+    </div>
+</div>
+
+<hr />
+
+<div>
+    @*Add comment post form*@
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form action="/Comment/Create/@ViewBag.bkm.b.Id" method="post">
+            <div class="form-group">
+                <label class="control-label"></label>
+                <input type="text" name="content" id="content" />
+            </div>
+          @*      <div class="form-group">
+                <input type="hidden" name="bookmarkId" id="bookmarkId" value="<%= ViewBag.bkm.b.Id %>" />
+            </div>
+            <div class="form-group">
+            <input type="hidden" name="redirecturl" id="redirecturl" value="/Bookmark/Show/@ViewBag.bkm.b.Id" />
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Add Comment" class="btn btn-primary" />
+            </div>
+        </form>
+    }
+</div>
