@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SocialBookmarking_FM.Data;
 using SocialBookmarking_FM.Models;
 using System.Security.Claims;
@@ -69,6 +70,43 @@ namespace SocialBookmarking_FM.Controllers
             ViewBag.comments = comments;
             
             return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "User,Admin")]
+        public IActionResult Edit(int id)
+        {
+            var bkm = db.Bookmarks.Find(id);
+
+            if (User.IsInRole("Admin") || bkm.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value) { 
+                var categs = db.Categories.ToList();
+                ViewBag.CategoryId = categs;
+                return View(bkm);
+            }
+            return View("Index");
+            
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "User,Admin")]
+        public void Edit(Bookmark b)
+        {
+            if (User.IsInRole("Admin") || b.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value) {
+                var b1 = db.Bookmarks.Find(b.Id);
+
+                b.UserId = b1.UserId;
+                b.Date = b1.Date;
+                b.rating = b1.rating;
+                
+                db.Entry(b1).State = EntityState.Detached;
+
+                
+                db.Bookmarks.Update(b);
+                db.SaveChanges();
+            }
+            
+            Response.Redirect("/Bookmark/Edit/" + b.Id);
+
         }
     }
 }

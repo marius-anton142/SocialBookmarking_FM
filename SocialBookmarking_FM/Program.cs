@@ -67,6 +67,12 @@ app.MapControllerRoute(
     );
 
 app.MapControllerRoute(
+    name: "editBookmark",
+    pattern: "Bookmark/Edit/{id}",
+    defaults: new { controller = "Bookmark", action = "Edit" }
+    );
+
+app.MapControllerRoute(
     name: "editComment",
     pattern: "Comment/Edit/{id}",
     defaults: new { controller = "Comment", action = "Edit" }

@@ -51,7 +51,7 @@
 <div>
     @if (User.IsInRole("Admin") || ViewBag.bkm.u.Id == ViewBag.currentUser)
     {
-        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+        <a href="/Bookmark/Edit/@ViewBag.bkm.b.Id">Edit</a>
     }
     <a asp-action="Index">Back to List</a>
 </div>
