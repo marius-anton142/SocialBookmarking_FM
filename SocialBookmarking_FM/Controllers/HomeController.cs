@@ -61,11 +61,11 @@ namespace SocialBookmarking_FM.Controllers
                            join y in db.Users
                            on x.UserId equals y.Id
 
-                           select new { b = x, u = y }).OrderByDescending(x => x.b.rating).Skip((int)start).Take(2).ToList();
+                           select new { b = x, u = y }).OrderByDescending(x => x.b.rating);
 
                 if (qbkm.Count() - start - 1 > 0)
                 {
-                    ViewBag.next = start + PAGINATION - 1;
+                    ViewBag.next = start + PAGINATION;
                 } else
                 {
                     ViewBag.next = -1;
@@ -73,7 +73,7 @@ namespace SocialBookmarking_FM.Controllers
 
                 if (start > 0)
                 {
-                    ViewBag.prev = start - PAGINATION + 1;
+                    ViewBag.prev = start - PAGINATION;
                 }
                 else
                 {
