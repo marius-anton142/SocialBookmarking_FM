@@ -12,6 +12,9 @@
             <h6><i class="fas fa-edit text-primary pr-1"></i>New Bookmark</h6>
         </div>
     </div>*@
+    <div>
+    <h6><i class="fas fa-edit text-primary pr-1"></i><a href="/Home/Index/@ViewBag.order">Switch to: @ViewBag.order</a></h6>
+    </div>
     <div class="container jsjhr">
         <div class="row skfjh">
             <div class="col-md-2 sfjhe">
@@ -62,6 +65,18 @@
                     </div>
                 </div>
                 }
+
+                <div>
+                     @if(ViewBag.prev != -1){
+                        <a href="/Home/Index/@ViewBag.prevOrder/@ViewBag.prev"> &lt; Prev </a>
+                    }
+                    
+                    @if(ViewBag.next != -1){
+                        <a href="/Home/Index/@ViewBag.prevOrder/@ViewBag.next">Next &gt; </a>
+                    }
+                    
+                   
+                </div>
                
                 <div class="left_box mt-3">
                     <span class="font-weight-medium">
