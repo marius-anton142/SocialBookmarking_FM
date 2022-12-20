@@ -6,15 +6,12 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-   
+  <body>
     @*<div class="d-flex justify-content-around">
         <div>
             <h6><i class="fas fa-edit text-primary pr-1"></i>New Bookmark</h6>
         </div>
     </div>*@
-    <div>
-    <h6><i class="fas fa-edit text-primary pr-1"></i><a href="/Home/Index/@ViewBag.order">Switch to: @ViewBag.order</a></h6>
-    </div>
     <div class="container jsjhr">
         <div class="row skfjh">
             <div class="col-md-2 sfjhe">
@@ -40,12 +37,12 @@
                 <div class="box1">
                     <div class="d-flex skfjkk">
                         <div class="pl-2 pt-1">
-                                <h6><a href="/User/Bookmarks/@item.u.UserName">@item.u.UserName</a></h6>
+                                <h6>@item.u.UserName</h6>
                         </div>
                     </div>
                     <hr>
                     <p class="text-muted">
-                            <a href="/Bookmark/Show/@item.b.Id"> @item.b.Title </a>
+                            @item.b.Title
                     </p>
                     <hr>
                     <div>
@@ -54,9 +51,8 @@
                     </div>
                     <div class="d-flex justify-content-around">
                         <div>
-                            <form class="form-inline" method="post" action="/Vote/Toggle/@item.b.Id">
-                                <button type="submit" class="nav-link btn btn-link text-dark"><i class="fa fa-heart"></i> Like @item.b.rating</button>
-                            </form>
+                            <i class="fa fa-heart"></i>
+                                Like @item.b.rating
                         </div>
                         @*<div>
                             <i class="fa fa-comment"></i>
@@ -65,18 +61,6 @@
                     </div>
                 </div>
                 }
-
-                <div>
-                     @if(ViewBag.prev != -1){
-                        <a href="/Home/Index/@ViewBag.prevOrder/@ViewBag.prev"> &lt; Prev </a>
-                    }
-                    
-                    @if(ViewBag.next != -1){
-                        <a href="/Home/Index/@ViewBag.prevOrder/@ViewBag.next">Next &gt; </a>
-                    }
-                    
-                   
-                </div>
                
                 <div class="left_box mt-3">
                     <span class="font-weight-medium">
@@ -91,4 +75,11 @@
             </div>
         </div>
     </div>
+</body>
 
+<style>
+    body {
+        font-family: "Poppins", sans-serif;
+        background: #a01676;
+    }
+</style>
