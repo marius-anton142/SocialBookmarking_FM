@@ -97,6 +97,12 @@ app.MapControllerRoute(
     );
 
 app.MapControllerRoute(
+    name: "userbookmarks",
+    pattern: "User/Bookmarks/{uname}",
+    defaults: new { controller = "User", action = "Bookmarks" }
+    );
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
