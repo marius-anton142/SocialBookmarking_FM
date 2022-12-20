@@ -16,7 +16,15 @@ namespace SocialBookmarking_FM.Controllers
         }
         public IActionResult Index()
         {
-            return View(db.Bookmarks.ToList());
+            ViewBag.bkm = (from x in db.Bookmarks
+                           join y in db.Users
+                           on x.UserId equals y.Id
+
+                           join z in db.Categories
+                           on x.CategoryId equals z.Id
+
+                           select new { b = x, u = y, c = z }).ToList();
+            return View();
         }
 
         [HttpGet]

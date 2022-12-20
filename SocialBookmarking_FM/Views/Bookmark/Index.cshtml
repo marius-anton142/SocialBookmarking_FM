@@ -1,4 +1,4 @@
-@model IEnumerable<SocialBookmarking_FM.Models.Bookmark>
+@*@model IEnumerable<SocialBookmarking_FM.Models.Bookmark>*@
 
 @{
     ViewData["Title"] = "Index";
@@ -21,28 +21,32 @@
             <th>Date</th>
             <th>Rating</th>
             <th>Category</th>
+            <th>User</th>
             @if (User.IsInRole("Admin")){
                 <th>Moderate</th>
             }
 
         </tr>
-        @foreach (var item in Model)
+        @foreach (var item in ViewBag.bkm)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    @item.b.Title
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Content)
+                    @item.b.Content
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Date)
+                    @item.b.Date
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.rating)
+                    @item.b.rating
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                    @item.c.CategoryName
+                </td>
+                <td>
+                    @item.u.UserName
                 </td>
                 @if (User.IsInRole("Admin"))
                 {
