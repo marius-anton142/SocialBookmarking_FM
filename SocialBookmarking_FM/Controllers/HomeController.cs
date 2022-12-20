@@ -23,8 +23,8 @@ namespace SocialBookmarking_FM.Controllers
             var bkm = (from x in db.Bookmarks 
                        join y in db.Users
                        on x.UserId equals y.Id
-                       //from entry in ALLCOLUMNS
-                       select new {b = x, u = y}).ToList();
+                       
+                       select new {b = x, u = y}).OrderByDescending(x => x.b.Date).ToList();
             ViewBag.bkm = bkm;
             return View();
         }
