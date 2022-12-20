@@ -103,6 +103,12 @@ app.MapControllerRoute(
     );
 
 app.MapControllerRoute(
+    name: "addvote",
+    pattern: "Vote/Toggle/{id}",
+    defaults: new { controller = "Vote", action = "Toggle" }
+    );
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 

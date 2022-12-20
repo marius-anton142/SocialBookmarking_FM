@@ -17,5 +17,14 @@ namespace SocialBookmarking_FM.Data
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
+        
+        public DbSet<Vote> Votes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Vote>()
+                  .HasKey(m => new { m.UserId, m.BookmarkId });
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

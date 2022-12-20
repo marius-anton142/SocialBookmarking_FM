@@ -51,8 +51,9 @@
                     </div>
                     <div class="d-flex justify-content-around">
                         <div>
-                            <i class="fa fa-heart"></i>
-                                Like @item.b.rating
+                            <form class="form-inline" method="post" action="/Vote/Toggle/@item.b.Id">
+                                <button type="submit" class="nav-link btn btn-link text-dark"><i class="fa fa-heart"></i> Like @item.b.rating</button>
+                            </form>
                         </div>
                         @*<div>
                             <i class="fa fa-comment"></i>
