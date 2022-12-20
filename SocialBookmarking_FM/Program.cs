@@ -55,7 +55,7 @@ app.MapControllerRoute(
     );
 
 app.MapControllerRoute(
-    name: "addbookmark",
+    name: "indexbookmark",
     pattern: "Bookmark/Index",
     defaults: new { controller = "Bookmark", action = "Index" }
     );
@@ -73,9 +73,27 @@ app.MapControllerRoute(
     );
 
 app.MapControllerRoute(
+    name: "deleteBookmark",
+    pattern: "Bookmark/Delete/{id}",
+    defaults: new { controller = "Bookmark", action = "Delete" }
+    );
+
+app.MapControllerRoute(
     name: "editComment",
     pattern: "Comment/Edit/{id}",
     defaults: new { controller = "Comment", action = "Edit" }
+    );
+
+app.MapControllerRoute(
+    name: "createComment",
+    pattern: "Comment/Create/{id}",
+    defaults: new { controller = "Comment", action = "Create" }
+    );
+
+app.MapControllerRoute(
+    name: "deleteComment",
+    pattern: "Comment/Delete/{id}",
+    defaults: new { controller = "Comment", action = "Delete" }
     );
 
 app.MapControllerRoute(
@@ -85,7 +103,7 @@ app.MapControllerRoute(
     );
 
 app.MapControllerRoute(
-    name: "addcategory",
+    name: "indexCategory",
     pattern: "Category/Index",
     defaults: new { controller = "Category", action = "Index" }
     );
@@ -94,6 +112,12 @@ app.MapControllerRoute(
     name: "editcategory",
     pattern: "Category/Edit/{id}",
     defaults: new { controller = "Category", action = "Edit" }
+    );
+
+app.MapControllerRoute(
+    name: "deleteCategory",
+    pattern: "Category/Delete/{id}",
+    defaults: new { controller = "Category", action = "Delete" }
     );
 
 app.MapControllerRoute(

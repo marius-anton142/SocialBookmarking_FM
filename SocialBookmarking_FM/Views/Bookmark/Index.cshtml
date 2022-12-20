@@ -51,9 +51,9 @@
                 @if (User.IsInRole("Admin"))
                 {
                     <td>    
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a asp-action="Edit" asp-route-id="@item.b.Id">Edit</a>
 
-                        <form class="form-inline" method="post" action="/Bookmark/Delete/@item.Id">
+                        <form class="form-inline" method="post" action="/Bookmark/Delete/@item.b.Id">
                             <button type="submit" class="nav-link btn btn-link text-dark">Delete</button>
                         </form>
                     

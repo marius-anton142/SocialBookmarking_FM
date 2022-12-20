@@ -39,14 +39,14 @@ namespace SocialBookmarking_FM.Controllers
 
         [HttpPost]
         [Authorize(Roles = "User,Admin")]
-        public IActionResult Create(Bookmark b)
+        public void Create(Bookmark b)
         {
             b.Date = DateTime.Now;
             b.rating = 0;
             b.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             db.Bookmarks.Add(b);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            Response.Redirect("/Bookmark/Index");
         }
 
         [HttpGet]
@@ -115,6 +115,20 @@ namespace SocialBookmarking_FM.Controllers
             
             Response.Redirect("/Bookmark/Edit/" + b.Id);
 
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "User,Admin")]
+        public void Delete(int id)
+        {
+            var b = db.Bookmarks.Find(id);
+
+            if (User.IsInRole("Admin") || b.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value)
+            {
+                db.Bookmarks.Remove(b);
+                db.SaveChanges();
+                Response.Redirect("/Bookmark/Index");
+            }
         }
     }
 }
