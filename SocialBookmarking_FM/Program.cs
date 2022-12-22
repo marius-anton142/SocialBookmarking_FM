@@ -139,6 +139,12 @@ app.MapControllerRoute(
     );
 
 app.MapControllerRoute(
+    name: "mybookmarks",
+    pattern: "User/MyBookmarks/{uname}",
+    defaults: new { controller = "User", action = "MyBookmarks" }
+    );
+
+app.MapControllerRoute(
     name: "addvote",
     pattern: "Vote/Toggle/{id}",
     defaults: new { controller = "Vote", action = "Toggle" }

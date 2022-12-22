@@ -14,7 +14,10 @@
             <a class="nav-link text-dark" href="/Collection/View" title="My Collections">My collections</a>
         </li>
      <li class="nav-item">
-            <a class="nav-link text-dark" href="/User/Bookmarks/@User.Identity?.Name" title="My page">My bookmarks</a>
+            <a class="nav-link text-dark" href="/User/MyBookmarks/@User.Identity?.Name" title="My bookmarks">My bookmarks</a>
+        </li>
+         <li class="nav-item">
+            <a class="nav-link text-dark" href="/User/Bookmarks/@User.Identity?.Name" title="My saved bookmarks">Saved bookmarks</a>
         </li>
     <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>

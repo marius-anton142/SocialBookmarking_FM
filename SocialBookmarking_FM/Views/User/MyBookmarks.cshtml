@@ -1,0 +1,65 @@
+﻿@*@model List<SocialBookmarking_FM.Models.Bookmark>*@
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+@*<div class="d-flex justify-content-around">
+        <div>
+            <h6><i class="fas fa-edit text-primary pr-1"></i>New Bookmark</h6>
+        </div>
+    </div>*@
+<div class="container jsjhr">
+    <div class="row skfjh">
+        <div class="col-md-2 sfjhe">
+            <div class=" sjfsj">
+                <h5 class="text-center pt-3">
+                    @ViewBag.user.UserName
+                </h5>
+                <p class="text-muted text-center">
+                    @ViewBag.userRole
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        @* <div class="jfheuf"><textarea name="" id="" cols="3" rows="3" class="form-control" placeholder="Un bookmark nou..."></textarea>
+        </div>*@
+        @foreach (var item in ViewBag.bkm)
+        {
+
+            <div class="box1">
+                <div class="d-flex skfjkk">
+                    <div class="pl-2 pt-1">
+                        <h6>@ViewBag.user.UserName</h6>
+                    </div>
+                </div>
+                <hr>
+                <p class="text-muted">
+                    <a href="/Bookmark/Show/@item.Id"> @item.Title </a>
+                </p>
+                <hr>
+                <div>
+                </div>
+                <div>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div>
+                        <form class="form-inline" method="post" action="/Vote/Toggle/@item.Id">
+                            <button type="submit" class="nav-link btn btn-link text-dark"><i class="fa fa-heart"></i> Like @item.rating</button>
+                        </form>
+                    </div>
+                    @*<div>
+                <i class="fa fa-comment"></i>
+                Comments 23
+                </div>*@
+                </div>
+            </div>
+        }
+    </div>
+</div>
+</div>
+
