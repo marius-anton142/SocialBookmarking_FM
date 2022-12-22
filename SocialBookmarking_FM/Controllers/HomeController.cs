@@ -24,6 +24,8 @@ namespace SocialBookmarking_FM.Controllers
             order = order ?? "date";
             start = start ?? 0;
 
+            ViewBag.ccat =(from x in db.CollectionCategory select x).ToList();
+
             ViewBag.prevOrder = order;
 
             if ((string)order == "date")

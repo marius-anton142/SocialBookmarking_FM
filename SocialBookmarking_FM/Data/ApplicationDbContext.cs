@@ -20,10 +20,21 @@ namespace SocialBookmarking_FM.Data
         
         public DbSet<Vote> Votes { get; set; }
 
+        public DbSet<Collection> Collection { get; set; }
+
+        public DbSet<CollectionCategory> CollectionCategory { get; set; }
+
+        public DbSet<BookmarkCollection> BookmarkCollection { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Vote>()
                   .HasKey(m => new { m.UserId, m.BookmarkId });
+
+            modelBuilder.Entity<BookmarkCollection>()
+                .HasIndex(p => new { p.BookmarkId, p.CollectionId }).IsUnique();
+
             base.OnModelCreating(modelBuilder);
         }
     }

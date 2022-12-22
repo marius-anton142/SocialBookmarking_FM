@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SocialBookmarking_FM.Models.Collection>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Collection
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Bookmark
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.collection) {
+        <tr>
+            <td>
+                    @item.col.Id
+            </td>
+            <td>
+                @item.cat.CategoryName
+            </td>
+                <td>
+                    @item.bok.Title
+                </td>
+            <td>
+                    <form class="form-inline" method="post" action="/BookmarkCollection/Delete/@item.bcid">
+                        <button type="submit" class="nav-link btn btn-link text-dark">Delete</button>
+                    </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -79,6 +79,12 @@ app.MapControllerRoute(
     );
 
 app.MapControllerRoute(
+    name: "deleteBookmark",
+    pattern: "Bookmark/Save/{id}",
+    defaults: new { controller = "Bookmark", action = "Delete" }
+    );
+
+app.MapControllerRoute(
     name: "editComment",
     pattern: "Comment/Edit/{id}",
     defaults: new { controller = "Comment", action = "Edit" }
@@ -136,6 +142,24 @@ app.MapControllerRoute(
     name: "addvote",
     pattern: "Vote/Toggle/{id}",
     defaults: new { controller = "Vote", action = "Toggle" }
+    );
+
+app.MapControllerRoute(
+    name: "addcategorycollection",
+    pattern: "CategoryCollection/Add",
+    defaults: new { controller = "CategoryCollection", action = "Add" }
+    );
+
+app.MapControllerRoute(
+    name: "viewCollection",
+    pattern: "Collection/View",
+    defaults: new { controller = "Collection", action = "ViewCollection" }
+    );
+
+app.MapControllerRoute(
+    name: "deleteBookmarkCollection",
+    pattern: "BookmarkCollection/Delete/{id}",
+    defaults: new { controller = "BookmarkCollection", action = "Delete" }
     );
 
 app.MapControllerRoute(

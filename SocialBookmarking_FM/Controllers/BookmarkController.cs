@@ -133,5 +133,12 @@ namespace SocialBookmarking_FM.Controllers
                 Response.Redirect("/Bookmark/Index");
             }
         }
+
+        [HttpPost]
+        [Authorize(Roles = "User,Admin")]
+        public void Save(int id)
+        {
+
+        }
     }
 }
