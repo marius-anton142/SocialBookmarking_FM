@@ -181,6 +181,12 @@ app.MapControllerRoute(
     );
 
 app.MapControllerRoute(
+    name: "search",
+    pattern: "Search",
+    defaults: new { controller = "Search", action = "SearchBookmarks" }
+    );
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{order?}/{start?}");
 
