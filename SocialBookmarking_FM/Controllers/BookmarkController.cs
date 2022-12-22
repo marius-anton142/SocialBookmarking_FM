@@ -102,8 +102,9 @@ namespace SocialBookmarking_FM.Controllers
         [Authorize(Roles = "User,Admin")]
         public void Edit(Bookmark b)
         {
-            if (User.IsInRole("Admin") || b.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value) {
-                var b1 = db.Bookmarks.Find(b.Id);
+            var b1 = db.Bookmarks.Find(b.Id);
+
+            if (User.IsInRole("Admin") || b1.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value) {
 
                 b.UserId = b1.UserId;
                 b.Date = b1.Date;
