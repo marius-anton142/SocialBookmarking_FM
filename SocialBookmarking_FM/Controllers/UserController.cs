@@ -15,7 +15,16 @@ namespace SocialBookmarking_FM.Controllers
         public IActionResult Bookmarks(string uname)
         {
             var uid = db.Users.Where(x => x.UserName == uname).ToList()[0].Id;
-            var bkm = db.Bookmarks.Where(x => x.UserId == uid).OrderByDescending(x => x.Date).ToList();
+            //var bkm = db.Bookmarks.Where(x => x.UserId == uid).OrderByDescending(x => x.Date).ToList();
+            var bkm = (
+                from col in db.Collection
+                where col.UserId == uid
+                join bcol in db.BookmarkCollection
+                on col.Id equals bcol.CollectionId
+                join b in db.Bookmarks
+                on bcol.BookmarkId equals b.Id
+                select b
+                ).ToList();
 
             ViewBag.bkm = bkm;
             ViewBag.user = db.Users.Where(x => x.UserName == uname).ToList()[0];

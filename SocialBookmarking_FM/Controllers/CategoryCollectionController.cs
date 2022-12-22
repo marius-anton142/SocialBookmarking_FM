@@ -17,9 +17,39 @@ namespace SocialBookmarking_FM.Controllers
             db = context;
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
-            return View();
+            return View(db.CollectionCategory.ToList());
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(int id)
+        {
+            return View(db.CollectionCategory.Find(id));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public void Edit(CollectionCategory cc)
+        {
+            db.CollectionCategory.Update(cc);
+            db.SaveChanges();
+
+            Response.Redirect("/CategoryCollection/Index");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public void Delete(int id)
+        {
+            var categ = db.CollectionCategory.Find(id);
+            db.CollectionCategory.Remove(categ);
+            db.SaveChanges();
+
+            Response.Redirect("/CategoryCollection/Index");
         }
 
         [HttpPost]

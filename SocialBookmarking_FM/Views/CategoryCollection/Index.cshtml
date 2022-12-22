@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SocialBookmarking_FM.Models.CollectionCategory>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                   <form class="form-inline" method="post" action="/CategoryCollection/Delete/@item.Id">
+                            <button type="submit" class="nav-link btn btn-link text-dark">Delete</button>
+                        </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

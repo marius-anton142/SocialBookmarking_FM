@@ -151,6 +151,24 @@ app.MapControllerRoute(
     );
 
 app.MapControllerRoute(
+    name: "indexCategoryCollection",
+    pattern: "CategoryCollection/Index",
+    defaults: new { controller = "CategoryCollection", action = "Index" }
+    );
+
+app.MapControllerRoute(
+    name: "indexCategoryCollection",
+    pattern: "CategoryCollection/Delete/{id}",
+    defaults: new { controller = "CategoryCollection", action = "Delete" }
+    );
+
+app.MapControllerRoute(
+    name: "indexCategoryCollection",
+    pattern: "CategoryCollection/Edit/{id}",
+    defaults: new { controller = "CategoryCollection", action = "Edit" }
+    );
+
+app.MapControllerRoute(
     name: "viewCollection",
     pattern: "Collection/View",
     defaults: new { controller = "Collection", action = "ViewCollection" }

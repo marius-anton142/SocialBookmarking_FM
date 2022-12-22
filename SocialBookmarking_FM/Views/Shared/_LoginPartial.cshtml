@@ -5,6 +5,11 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+    @if(User.IsInRole("Admin")){
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/CategoryCollection/Index" title="Collection categories">Collection categories</a>
+        </li>
+    }
     <li class="nav-item">
             <a class="nav-link text-dark" href="/Collection/View" title="My Collections">My collections</a>
         </li>
