@@ -12,12 +12,10 @@
             categoryId: $("#catSel").val()
         },
         success: function (data, status, xhr) {
-            console.log("Success");
-            console.log(data);
+            $("#collectionModal").modal("hide");
         },
         error: function (jqXhr, textStatus, errorMessage) {
-            console.log("Error");
-            console.log(textStatus);
+            $("#badResponse").text("An error has occured");
 
         }
     });

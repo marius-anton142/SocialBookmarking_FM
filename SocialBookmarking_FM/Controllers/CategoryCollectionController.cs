@@ -103,7 +103,15 @@ namespace SocialBookmarking_FM.Controllers
                 cid = existsCollection.FirstOrDefault().Id;
             }
 
-            this.AddBookmarkCollection(bId, cid);
+            try
+            {
+                this.AddBookmarkCollection(bId, cid);
+            }catch(Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                errors.Add("Invalid data");
+                return Json(errors);
+            }
 
             var ok = new Dictionary<string, string>
             {
@@ -120,8 +128,13 @@ namespace SocialBookmarking_FM.Controllers
             newCC.BookmarkId = bId;
             newCC.CollectionId = cId;
 
-            db.BookmarkCollection.Add(newCC);
-            db.SaveChanges();
+            try
+            {
+                db.BookmarkCollection.Add(newCC);
+                db.SaveChanges();
+            } catch(Exception ex) {
+                throw ex;
+            }
         }
     }
 }

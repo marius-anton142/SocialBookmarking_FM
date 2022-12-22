@@ -81,54 +81,14 @@
                                 @*<button type="button" class="btn btn-primary" data-id="@item.b.Id" data-toggle="modal" data-target="#collectionModal">
                                     Add to collection
                                 </button>*@
-                                <a data-id="@item.b.Id" class="addToCollection" href="#collectionModal" data-toggle="modal">Add to collection</a>
+                                <a data-id="@item.b.Id" class="addToCollection" href="#collectionModal">Add to collection</a>
                             </div>
                         }
                     </div>
                 </div>
                 }
 
-            @if (User.Identity.IsAuthenticated)
-            {
-                <div class="modal fade" id="collectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add to collection</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-inline" method="POST" action="/CategoryCollection/Add" id="frmAddToCollection">
-                                    <input type="hidden" id="addBkm" value=""/>
-                                    <label for="categories">Category</label>
-                                    <input list="categories" id="catSel" name="catSel">
-                                    <datalist id="categories">
-                                    @foreach (var ccat in ViewBag.ccat)
-                                    {
-                                            <option value="@ccat.CategoryName" />
-                                    }
-                                    </datalist>
-                                    <button type="submit" id="submitToCollection">Add</button>
-                                </form>
-                            </div>
-                            @*<div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>*@
-                        </div>
-                    </div>
-                </div>
-                <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
-                <script type="text/javascript" src="/js/addToCollection.js"></script>
-                <script type="text/javascript">
-                    $(document).on("click", ".addToCollection", function(){
-                        var bookmarkId = $(this).data("id");
-                        $("#collectionModal .modal-body #addBkm").val(bookmarkId);
-                    });
-
-                </script>
-            }
+           
 
                 <div>
                      @if(ViewBag.prev != -1){
@@ -145,3 +105,43 @@
         </div>
     </div>
 
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="modal fade" id="collectionModal" tabindex="-1" role="dialog" aria-labelledby="collectionModalAria" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add to collection</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline" method="POST" action="/CategoryCollection/Add" id="frmAddToCollection">
+                        <input type="hidden" id="addBkm" value="" />
+                        <label for="categories">Category</label>
+                        <input list="categories" id="catSel" name="catSel" autocomplete="off">
+                        <datalist id="categories">
+                            @foreach (var ccat in ViewBag.ccat)
+                            {
+                                <option value="@ccat.CategoryName" />
+                            }
+                        </datalist>
+                        <button type="submit" id="submitToCollection">Add</button>
+                    </form>
+                    <span id="badResponse" style="color: red"></span>
+                </div>
+                @*<div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>*@
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/addToCollection.js"></script>
+    <script type="text/javascript">
+        $(document).on("click", ".addToCollection", function () {
+            var bookmarkId = $(this).data("id");
+            $("#collectionModal .modal-body #addBkm").val(bookmarkId);
+            $("#collectionModal").modal("show");
+        });
+
+    </script>
+}
