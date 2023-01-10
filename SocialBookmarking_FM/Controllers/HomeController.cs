@@ -65,7 +65,7 @@ namespace SocialBookmarking_FM.Controllers
 
                            select new { b = x, u = y }).OrderByDescending(x => x.b.rating);
 
-                if (qbkm.Count() - start - 1 > 0)
+                if (qbkm.Count() - start - 1 > 1)
                 {
                     ViewBag.next = start + PAGINATION;
                 } else
