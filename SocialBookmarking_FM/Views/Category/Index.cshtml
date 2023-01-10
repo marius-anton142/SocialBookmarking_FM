@@ -16,9 +16,7 @@
     <hr>
     <table>
         <tr id="header">
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryName)
-            </th>
+            <th>Category Name</th>
             @if (User.IsInRole("Admin")){
                 <th>Moderate</th>
             }
@@ -30,25 +28,25 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CategoryName)
                 </td>
-                <td>
-                    @if (User.IsInRole("Admin"))
-                    {
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
 
-                    }
-
-                    @if (User.IsInRole("Admin"))
-                    {
                         <form class="form-inline" method="post" action="/Category/Delete/@item.Id">
                             <button type="submit" class="nav-link btn btn-link text-dark">Delete</button>
                         </form>
-                    }
-                </td>
+                    </td>
+                }
             </tr>
         }
     </table>
 </body>
 <style>
+    .form-inline {
+        margin-left: 34%;
+    }
     body {
         padding: 0px;
         margin: 0;
@@ -78,7 +76,7 @@
         max-width: 200px;
         text-align: center;
         vertical-align: text-top;
-        word-wrap: break-word;
+        word-wrap:break-word;
         border-bottom: 1px solid #ddd;
     }
 
@@ -111,5 +109,5 @@
 
     a {
         color: #000;
-    }
+    }   
 </style>
