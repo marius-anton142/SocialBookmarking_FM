@@ -26,7 +26,7 @@ namespace SocialBookmarking_FM.Controllers
             {
                 db.BookmarkCollection.Remove(bc);
                 db.SaveChanges();
-                Response.Redirect("/Bookmark/Index");
+                Response.Redirect("/Collection/View");
             };
 
         }

@@ -117,7 +117,7 @@ namespace SocialBookmarking_FM.Controllers
                 db.SaveChanges();
             }
             
-            Response.Redirect("/Bookmark/Edit/" + b.Id);
+            Response.Redirect("/Bookmark/Show/" + b.Id);
 
         }
 
