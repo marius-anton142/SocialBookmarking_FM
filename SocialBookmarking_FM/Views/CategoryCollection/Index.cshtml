@@ -1,33 +1,105 @@
-﻿@model IEnumerable<SocialBookmarking_FM.Models.CollectionCategory>
+@model IEnumerable<SocialBookmarking_FM.Models.CollectionCategory>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryName)
-            </th>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+</head>
+<body>
+    <h1>Collection Categories</h1>
+    <hr>
+    <table>
+        <tr id="header">
+            <th>Category Name</th>
             <th></th>
+
         </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                   <form class="form-inline" method="post" action="/CategoryCollection/Delete/@item.Id">
-                            <button type="submit" class="nav-link btn btn-link text-dark">Delete</button>
-                        </form>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <form class="form-inline" method="post" action="/CategoryCollection/Delete/@item.Id">
+                        <button type="submit" class="nav-link btn btn-link text-dark">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+<style>
+    .form-inline {
+        margin-left: 36.5%;
+    }
+
+    body {
+        padding: 0px;
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+    }
+
+    table {
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 0);
+        border-collapse: collapse;
+        width: 800px;
+        height: 200px;
+        border: 1px solid #bdc3c7;
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    tr {
+        transition: all .2s ease-in;
+        cursor: pointer;
+    }
+
+    th,
+    td {
+        padding: 12px;
+        max-width: 200px;
+        text-align: center;
+        vertical-align: text-top;
+        word-wrap: break-word;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #header {
+        background-color: #16a085;
+        color: #fff;
+    }
+
+    h1 {
+        font-weight: 600;
+        text-align: center;
+        background-color: #16a085;
+        color: #fff;
+        padding: 10px 0px;
+    }
+
+    p {
+        font-weight: 600;
+        text-align: center;
+        background-color: #16A040;
+        color: #fff;
+        padding: 10px 0px;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+        transform: scale(1.02);
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    a {
+        color: #000;
+    }
+</style>
