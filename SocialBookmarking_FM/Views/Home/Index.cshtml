@@ -6,105 +6,147 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-    @*<div class="d-flex justify-content-around">
-        <div>
-            <h6><i class="fas fa-edit text-primary pr-1"></i>New Bookmark</h6>
-        </div>
-    </div>*@
-    <div>
-    <h6><i class="fas fa-edit text-primary pr-1"></i><a href="/Home/Index/@ViewBag.order">Switch to: @ViewBag.order</a></h6>
-    </div>
-    <div class="container jsjhr">
-        <div class="row skfjh">
-            <div class="col-md-2 sfjhe">
-            <div class="input-group">
-                <form method="POST" action="/Search">
-                <div class="form-outline">
-                    <input id="search-input" type="search" id="search" class="form-control" name="search" />
-                    <select id="orderBy" name="orderBy">
-                        <option value="date" selected>Date</option>
-                        <option value="rating">Rating</option>
-                    </select>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="tm-container">
+        <div class="tm-row">
+            <div class="tm-left">
+                <div class="tm-left-inner">
+                    <div class="tm-site-header">
+                        <i class="fas fa-bookmark fa-3x tm-site-logo"></i>
+                        <h1 class="tm-site-name">Bookmark Cabin</h1>
+                    </div>
+                    <nav class="tm-site-nav">
+                        <ul class="tm-site-nav-ul">
+                            <li class="tm-page-nav-item">
+                                <a href="#drink" class="tm-page-link active">
+                                    <i class="fas fa-comments tm-page-link-icon"></i>
+                                    <span>Bookmarks</span>
+                                </a>
+                            </li>
+                            <li class="tm-page-nav-item">
+                                <a href="#about" class="tm-page-link">
+                                    <i class="fas fa-users tm-page-link-icon"></i>
+                                    <span>About Us</span>
+                                </a>
+                            </li>
+                            <li>
+                                <br><form method="POST" action="/Search">
+                                    <div class="form-outline">
+                                        <input id="search-input" type="search" id="search" class="form-control" name="search" />
+                                        <br>
+                                        <select id="orderBy" name="orderBy">
+                                            <option value="date" selected>Date</option>
+                                            <option value="rating">Rating</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <button id="search-button" type="submit" class="btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <br><h6><i class="fas fa-edit text-primary pr-1"></i><a href="/Home/Index/@ViewBag.order">Switch to: @ViewBag.order</a></h6>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-                <button id="search-button" type="submit" class="btn btn-primary">
-                    <i class="fas fa-search"></i>
-                </button>
-                </form>
             </div>
-                @*<div class=" sjfsj">
-                    <h5 class="text-center pt-3">
-                        USER
-                    </h5>
-                    <p class="text-muted text-center">
-                        ROLE
-                    </p>
-                    <div class="text-center">
-                        <a href="" class="font-weight-bold text-decoration-none text-center">
-                            Profile
-                        </a>
-                    </div>
-                </div>*@
-            </div>
-            <div class="col-md-6">
-               @* <div class="jfheuf"><textarea name="" id="" cols="3" rows="3" class="form-control" placeholder="Un bookmark nou..."></textarea>
-                </div>*@
-                @foreach (var item in ViewBag.bkm) {
-                
-                <div class="box1">
-                    <div class="d-flex skfjkk">
-                        <div class="pl-2 pt-1">
-                                <h6><a href="/User/Bookmarks/@item.u.UserName">@item.u.UserName</a></h6>
-                        </div>
-                    </div>
-                    <hr>
-                    <p class="text-muted">
-                            <a href="/Bookmark/Show/@item.b.Id"> @item.b.Title </a>
-                    </p>
-                    <hr>
-                    <div>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="d-flex justify-content-around">
-                        <div>
-                            <form class="form-inline" method="post" action="/Vote/Toggle/@item.b.Id">
-                                <button type="submit" class="nav-link btn btn-link text-dark"><i class="fa fa-heart"></i> Like @item.b.rating</button>
-                            </form>
-                        </div>
-                        @*<div>
-                            <i class="fa fa-comment"></i>
-                            Comments 23
-                        </div>*@
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <div>
-                                @*<button type="button" class="btn btn-primary" data-id="@item.b.Id" data-toggle="modal" data-target="#collectionModal">
-                                    Add to collection
-                                </button>*@
-                                <a data-id="@item.b.Id" class="addToCollection" href="#collectionModal">Add to collection</a>
+            <div class="tm-right">
+                <main class="tm-main">
+                    <div id="drink" class="tm-page-content">
+                        <nav class="tm-black-bg tm-drinks-nav">
+                            <ul>
+                                @if (ViewBag.prev != -1)
+                                {
+                                    <li><a href="/Home/Index/@ViewBag.prevOrder/@ViewBag.prev"> &lt; Prev </a></li>
+                                }
+
+                                @if (ViewBag.next != -1)
+                                {
+                                    <li><a href="/Home/Index/@ViewBag.prevOrder/@ViewBag.next">Next &gt; </a></li>
+                                }
+                            </ul>
+                        </nav>
+
+                        <div id="cold" class="tm-tab-content">
+                            <div class="tm-list">
+                                @foreach (var item in ViewBag.bkm)
+                                {
+                                    <div class="tm-list-item">
+                                        <div class="tm-black-bg tm-list-item-text">
+                                            <h3 class="tm-list-item-name">
+                                                <a href="/User/Bookmarks/@item.u.UserName">@item.u.UserName</a><span class="tm-list-item-price">
+                                                    <div>
+                                                        <form class="form-inline" method="post" action="/Vote/Toggle/@item.b.Id">
+                                                            <button type="submit" class="nav-link btn btn-link text-dark"><i class="fa fa-heart"></i> Like @item.b.rating</button>
+                                                        </form>
+                                                    </div>
+                                                </span>
+                                            </h3>
+                                            <hr>
+                                            <p class="tm-list-item-description"><a href="/Bookmark/Show/@item.b.Id"> @item.b.Title </a></p>
+                                            <hr>
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <div>
+                                                    <a data-id="@item.b.Id" class="addToCollection" href="#collectionModal">Add to collection</a>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
                             </div>
-                        }
+                        </div>
+
+                        <div id="hot" class="tm-tab-content">
+                        </div>
+                        <div id="juice" class="tm-tab-content">
+                            <div class="tm-list">
+                                <div class="tm-list-item">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="about" class="tm-page-content">
+                            <div class="tm-black-bg tm-mb-20 tm-about-box-2">
+                                <div class="tm-list-item tm-list-item-2">
+                                    <div class="tm-list-item-text-2">
+                                        <h2 class="tm-text-primary">About Bookmark Cabin</h2>
+                                        <p>Welcome to Bookmark Cabin! We are a website dedicated to helping you organize and keep track of all your favorite articles. With Bookmark Cabin, you can easily create and save bookmarks to quickly get involved in the latest discussions.</p>
+                                    </div>
+                                </div>
+                                <p>Our user-friendly interface allows you to easily search and organize your bookmarks into customizable categories. You can also add and read comments to each bookmark to make it even easier to find exactly what you are looking for. Share the newest bookmarks with all your friends and start chatting!</p>
+                            </div>
+                            <div class="tm-black-bg tm-mb-20 tm-about-box-2">
+                                <div class="tm-list-item tm-list-item-2">
+                                    <div class="tm-list-item-text-2">
+                                        <h2 class="tm-text-primary">How we began</h2>
+                                        <p>We are a team of two guys passionate about bookmarks. We have been working on this site for the past 48 years in order to bring our ideas to life.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tm-black-bg tm-mb-20 tm-about-box-2">
+                            <div class="tm-list-item tm-list-item-2">
+                                <div class="tm-list-item-text-2">
+                                    <h2 class="tm-text-primary">Special note</h2>
+                                    <p>Thank you for using Bookmark Cabin! Consider contributing with a comment, we can't wait to hear your opinion!</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                }
-
-           
-
-                <div>
-                     @if(ViewBag.prev != -1){
-                        <a href="/Home/Index/@ViewBag.prevOrder/@ViewBag.prev"> &lt; Prev </a>
-                    }
-                    
-                    @if(ViewBag.next != -1){
-                        <a href="/Home/Index/@ViewBag.prevOrder/@ViewBag.next">Next &gt; </a>
-                    }
-                    
-                   
-                </div>
+                </main>
             </div>
         </div>
     </div>
 
+</body>
+</html>
 @if (User.Identity.IsAuthenticated)
 {
     <div class="modal fade" id="collectionModal" tabindex="-1" role="dialog" aria-labelledby="collectionModalAria" aria-hidden="true">
@@ -142,6 +184,360 @@
             $("#collectionModal .modal-body #addBkm").val(bookmarkId);
             $("#collectionModal").modal("show");
         });
-
     </script>
 }
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        overflow-x: hidden;
+        background-color: #1E5050;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    nav > ul > li {
+        list-style: none;
+    }
+
+    a {
+        color: #3CF;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    p {
+        line-height: 1.8;
+        margin-top: 0;
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+
+    #tm-video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        z-index: -1000;
+    }
+
+    .tm-video-wrapper {
+        position: relative;
+    }
+
+    #tm-video-control-button {
+        cursor: pointer;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+        background-color: rgba(0,0,0,0.5);
+        color: white;
+        padding: 10px;
+    }
+
+    .tm-container {
+        padding: 30px;
+    }
+
+    .tm-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .tm-left,
+    .tm-right {
+        width: 50%;
+    }
+
+    .tm-left-inner {
+        position: fixed;
+    }
+
+    .tm-site-header {
+        background-color: white;
+        color: #099;
+        width: 100%;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tm-site-logo {
+        margin-right: 30px;
+    }
+
+    .tm-site-name {
+        font-size: 2.2rem;
+        font-style: italic;
+    }
+
+    .tm-left-inner {
+        max-width: 500px;
+        width: 100%;
+    }
+
+    .tm-site-nav-ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .tm-page-nav-item {
+        margin-top: 20px;
+    }
+
+    .tm-page-link {
+        min-width: 240px;
+        height: 100px;
+        background-color: white;
+        color: #099;
+        display: flex;
+        text-decoration: none;
+        align-items: center;
+        font-size: 1.2rem;
+    }
+
+        .tm-page-link:hover,
+        .tm-page-link.active {
+            background-color: #099;
+            color: white;
+        }
+
+    .tm-page-link-icon {
+        margin-right: 25px;
+        margin-left: 25px;
+        font-size: 1.5rem;
+    }
+
+    .tm-black-bg {
+        background-color: rgba(0,0,0,0.6);
+        color: white;
+    }
+
+    .tm-drinks-nav > ul > li {
+        display: inline-block;
+    }
+
+        .tm-drinks-nav > ul > li > a {
+            color: white;
+            font-size: 1.2rem;
+            padding-top: 15px;
+            padding-bottom: 5px;
+            border-bottom: 3px solid transparent;
+        }
+
+    .tm-drinks-nav {
+        height: 80px;
+    }
+
+    .tm-main {
+        max-width: 660px;
+    }
+
+    .tm-drinks-nav > ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 100%;
+    }
+
+        .tm-drinks-nav > ul > li a.active,
+        .tm-drinks-nav > ul > li a:hover {
+            color: #96FEFF;
+            border-bottom: 4px solid #96FEFF;
+        }
+
+    .tm-list-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .tm-list-item-2 {
+        align-items: flex-start;
+    }
+
+    .tm-list-item-img {
+        margin-right: 20px;
+        width: 160px;
+        height: 160px;
+        background-color: #099;
+    }
+
+    .tm-list-item-img-big {
+        margin-right: 25px;
+        width: 200px;
+        height: 200px;
+    }
+
+    .tm-list-item-text {
+        padding: 20px 25px;
+        flex: 1;
+    }
+
+    .tm-list-item-text-2 {
+        flex: 1;
+    }
+
+    .tm-list-item-name {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0;
+    }
+
+    .tm-list-item-price {
+        color: #96FEFF;
+    }
+
+    .tm-site-footer {
+        margin-top: 15px;
+    }
+
+    .tm-footer-text {
+        padding: 10px 65px 10px 20px;
+        display: inline-block;
+    }
+
+    .tm-footer-link {
+        color: white;
+    }
+
+    .tm-tab-content {
+        animation: fadeEffect 1s;
+    }
+
+    .tm-page-content {
+        animation: fadeEffect 1s;
+    }
+
+    .tm-text-primary {
+        color: #3CC;
+    }
+
+    .tm-mb-20 {
+        margin-bottom: 20px;
+    }
+
+    .tm-mb-30 {
+        margin-bottom: 30px;
+    }
+
+    .tm-img-right {
+        margin-left: 30px;
+        margin-right: 0;
+    }
+
+    /* About */
+    .tm-about-box-1 {
+        padding: 40px 30px 50px 0;
+    }
+
+    .tm-about-box-2 {
+        padding: 50px 40px 30px;
+    }
+
+    .tm-about-header {
+        margin-left: 220px;
+    }
+
+    /* Special */
+    .tm-special-items {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -30px -10px 0;
+    }
+
+    .tm-special-item {
+        max-width: 320px;
+        margin: 30px 10px;
+    }
+
+    .tm-special-item-title {
+        font-size: 1.4rem;
+    }
+
+    .tm-special-item-description {
+        padding: 25px 30px;
+    }
+
+    /* Contact */
+    .tm-contact-text-container {
+        padding: 45px 50px;
+        margin-bottom: 20px;
+    }
+
+    .tm-contact-form-container {
+        max-width: 460px;
+        padding: 40px 50px;
+        box-sizing: border-box;
+    }
+
+    .tm-form-group {
+        margin-bottom: 25px;
+    }
+
+    .tm-form-control {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 15px;
+        font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #fff;
+        background-color: transparent;
+        background-clip: padding-box;
+        border: 0;
+        border-bottom: 1px solid white;
+    }
+
+        .tm-form-control::-webkit-input-placeholder {
+            color: white;
+        }
+        /* Edge */
+        .tm-form-control:-ms-input-placeholder {
+            color: white;
+        }
+        /* Internet Explorer 10-11 */
+        .tm-form-control::placeholder {
+            color: white;
+        }
+
+    .tm-btn-primary {
+        color: #099;
+        background-color: white;
+        border: 0;
+        padding: 12px 40px;
+        font-size: 1.4rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .tm-btn-primary:hover {
+            color: white;
+            background-color: #099;
+        }
+
+    .tm-align-right {
+        display: block;
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+    .tm-mb-30 {
+        margin-bottom: 30px;
+    }
+</style>
