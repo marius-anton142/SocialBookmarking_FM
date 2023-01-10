@@ -35,7 +35,7 @@ namespace SocialBookmarking_FM.Controllers
                             on x.UserId equals y.Id
 
                             select new { b = x, u = y }).OrderByDescending(x => x.b.Date);
-                if (qbkm.Count() - start - 1 > 0)
+                if (qbkm.Count() - start - 1 > 1)
                 {
                     ViewBag.next = start + PAGINATION ;
                 } else
